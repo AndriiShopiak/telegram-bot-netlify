@@ -1,13 +1,19 @@
 const { Telegraf } = require("telegraf")
+const { message } = require("telegraf/filters")
 const bot = new Telegraf("7658813202:AAFov6AGcIWaYcF8b04pAwUXv5ZSzH6WaiM")
 
 bot.start(ctx => {
-  console.log("Received /start command")
   try {
     return ctx.reply("Hi I am bot created by Andrii")
   } catch (e) {
-    console.error("error in start action:", e)
     return ctx.reply("Error occured")
+  }
+})
+bot.on(message('text'), ctx => {
+  try {
+    ctx.reply(ctx.text);
+  } catch(e) {
+    return ctx.reply("Error occured");
   }
 })
 
